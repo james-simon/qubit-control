@@ -1,0 +1,182 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      6632,        172]
+NotebookOptionsPosition[      6197,        153]
+NotebookOutlinePosition[      6541,        168]
+CellTagsIndexPosition[      6498,        165]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Qdot", " ", "=", " ", ".65"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"k", " ", "=", " ", "70"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"a", " ", "=", " ", 
+   RowBox[{"2", "*", 
+    SuperscriptBox["10", 
+     RowBox[{"-", "6"}]]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"b", " ", "=", " ", 
+   RowBox[{"5", "*", 
+    SuperscriptBox["10", 
+     RowBox[{"-", "6"}]]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[CapitalDelta]\[Theta]", " ", "=", " ", 
+    RowBox[{"2", 
+     RowBox[{"\[Pi]", "/", "2"}]}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"rA", " ", "=", " ", 
+    RowBox[{".85", "*", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"a", " ", "+", " ", "b"}], ")"}], "/", "2"}]}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"T0", " ", "=", " ", 
+  RowBox[{
+   FractionBox["Qdot", 
+    RowBox[{"\[Pi]", "*", "k", "*", 
+     RowBox[{"(", 
+      RowBox[{"b", " ", "+", " ", "a"}], ")"}]}]], " ", "//", " ", 
+   "N"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  FractionBox["Qdot", 
+   RowBox[{"\[Pi]", "*", "k", "*", "\[CapitalDelta]\[Theta]", "*", 
+    RowBox[{"(", 
+     RowBox[{
+      SuperscriptBox["b", "2"], " ", "-", " ", 
+      SuperscriptBox["a", "2"]}], ")"}]}]], "*", 
+  RowBox[{"NIntegrate", "[", 
+   RowBox[{
+    RowBox[{"r", "/", 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{
+        SuperscriptBox[
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"r", "*", 
+            RowBox[{"Cos", "[", "\[Theta]", "]"}]}], " ", "-", " ", "rA"}], 
+          ")"}], "2"], " ", "+", " ", 
+        SuperscriptBox[
+         RowBox[{"(", 
+          RowBox[{"r", "*", 
+           RowBox[{"Sin", "[", "\[Theta]", "]"}]}], ")"}], "2"]}], ")"}], 
+      RowBox[{"1", "/", "2"}]]}], ",", " ", 
+    RowBox[{"{", 
+     RowBox[{"r", ",", " ", "a", ",", " ", "b"}], "}"}], ",", " ", 
+    RowBox[{"{", 
+     RowBox[{"\[Theta]", ",", " ", 
+      RowBox[{
+       RowBox[{"-", "\[CapitalDelta]\[Theta]"}], "/", "2"}], ",", " ", 
+      RowBox[{"\[CapitalDelta]\[Theta]", "/", "2"}]}], "}"}]}], 
+   "]"}]}]}], "Input",
+ CellChangeTimes->{{3.7639843135274334`*^9, 3.763984612499885*^9}, {
+  3.7639846470730143`*^9, 3.7639846721408453`*^9}, {3.7639847062245064`*^9, 
+  3.7639847215757427`*^9}, {3.763984801554776*^9, 3.763984808811604*^9}, {
+  3.763985379348194*^9, 3.763985388990652*^9}, {3.7639854871052628`*^9, 
+  3.7639855392043304`*^9}}],
+
+Cell[BoxData["422.2478082029877`"], "Output",
+ CellChangeTimes->{{3.7639844049588823`*^9, 3.7639844104178286`*^9}, {
+   3.7639845607155204`*^9, 3.763984614033003*^9}, {3.7639846491448226`*^9, 
+   3.7639846738478613`*^9}, {3.763984707600712*^9, 3.7639847122690287`*^9}, 
+   3.7639847720327425`*^9, {3.763984802184414*^9, 3.7639848095032063`*^9}, {
+   3.7639853809742603`*^9, 3.7639853893604403`*^9}, {3.7639854884914646`*^9, 
+   3.763985539793991*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"NIntegrate", "::", "slwcon"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Numerical integration converging too slowly; suspect one \
+of the following: singularity, value of the integration is 0, highly \
+oscillatory integrand, or WorkingPrecision too small. \\!\\(\\*ButtonBox[\\\"\
+\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/NIntegrate/slwcon\\\", ButtonNote -> \
+\\\"NIntegrate::slwcon\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{{3.7639846531174793`*^9, 3.763984674141694*^9}, {
+   3.763984707924526*^9, 3.7639847125588617`*^9}, 3.763984772283598*^9, {
+   3.7639848024912367`*^9, 3.763984809880989*^9}, {3.7639853812311125`*^9, 
+   3.7639853896372805`*^9}, {3.763985488828271*^9, 3.763985540031854*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"NIntegrate", "::", "ncvb"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"NIntegrate failed to converge to prescribed accuracy after \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"18\\\"}]\\)\[NoBreak] recursive bisections in \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"r\\\"}]\\)\[NoBreak] near \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"r\\\", \\\",\\\", \\\"\
+\[Theta]\\\"}], \\\"}\\\"}]\\)\[NoBreak] = \[NoBreak]\\!\\(\\*RowBox[{\\\"{\\\
+\", RowBox[{\\\"2.975000504954538`*^-6\\\", \\\",\\\", \
+\\\"2.995375813863685`*^-6\\\"}], \\\"}\\\"}]\\)\[NoBreak]. NIntegrate \
+obtained \[NoBreak]\\!\\(\\*RowBox[{\\\"0.000018291348396842847`\\\"}]\\)\
+\[NoBreak] and \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"5.845781339243074`*^-11\\\"}]\\)\[NoBreak] for \
+the integral and error estimates. \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/NIntegrate/ncvb\\\", \
+ButtonNote -> \\\"NIntegrate::ncvb\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{{3.7639846531174793`*^9, 3.763984674141694*^9}, {
+   3.763984707924526*^9, 3.7639847125588617`*^9}, 3.763984772283598*^9, {
+   3.7639848024912367`*^9, 3.763984809880989*^9}, {3.7639853812311125`*^9, 
+   3.7639853896372805`*^9}, {3.763985488828271*^9, 3.7639855403896494`*^9}}],
+
+Cell[BoxData["819.4868676793345`"], "Output",
+ CellChangeTimes->{{3.7639844049588823`*^9, 3.7639844104178286`*^9}, {
+   3.7639845607155204`*^9, 3.763984614033003*^9}, {3.7639846491448226`*^9, 
+   3.7639846738478613`*^9}, {3.763984707600712*^9, 3.7639847122690287`*^9}, 
+   3.7639847720327425`*^9, {3.763984802184414*^9, 3.7639848095032063`*^9}, {
+   3.7639853809742603`*^9, 3.7639853893604403`*^9}, {3.7639854884914646`*^9, 
+   3.763985540399644*^9}}]
+}, Open  ]]
+},
+WindowSize->{1366, 685},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+FrontEndVersion->"10.4 for Microsoft Windows (64-bit) (April 11, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 2527, 72, 266, "Input"],
+Cell[3110, 96, 451, 6, 31, "Output"],
+Cell[3564, 104, 830, 14, 21, "Message"],
+Cell[4397, 120, 1330, 22, 47, "Message"],
+Cell[5730, 144, 451, 6, 31, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

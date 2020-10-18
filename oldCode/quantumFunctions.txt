@@ -1,0 +1,34 @@
+Sx = (hBar/2)\[Sigma]X
+Sy = (hBar/2)\[Sigma]Y
+Sz = (hBar/2)\[Sigma]Z
+
+Ix = (hBar/2)\[Sigma]X
+Iy = (hBar/2)\[Sigma]Y
+Iz = (hBar/2)\[Sigma]Z
+
+SdotI = TProduct[Sx, Ix] + TProduct[Sy, Iy] + TProduct[Sz, Iz];
+
+hBar = 1;
+
+transform[M_, U_] := ConjugateTranspose[U].M.U - \[ii] hBar U D[ConjugateTranspose[U], t]
+
+(* units of MHz *)
+setVariables[] := (
+	B0 = 2;
+	d = 15 * 10^-9;
+	Bac = 0;
+	A = 117 * 10^6;
+	\[Gamma]e = 28 * 10^9;
+	\[Gamma]n = 17.2 * 10^6;
+	\[CapitalDelta]\[Gamma] = .007;
+	h = 6.62607004 * 10^-34;
+	e = 1.60217662 * 10^-19;
+)
+
+clearVariables := Clear[B0, Bac, \[omega]B, \[Gamma]e, \[Gamma]n, \[CapitalDelta]\[Gamma], A, Aac, \[CapitalDelta]E, Eac, Vt, d, h]
+
+HB0 = B0 (\[Gamma]e*TProduct[\[Sigma]I, \[Sigma]I, Sz] - \[Gamma]n*TProduct[\[Sigma]I, Iz, \[Sigma]I])
+HA = TProduct[{{0, 0}, {0, A}}, SdotI]
+Horb = Vt*\[Sigma]X/2 - (e*\[CapitalDelta]E*d/(2h))\[Sigma]Z
+H = HB0 + HA + Horb
+

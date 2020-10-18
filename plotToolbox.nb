@@ -1,0 +1,394 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     17125,        386]
+NotebookOptionsPosition[     16511,        368]
+NotebookOutlinePosition[     16849,        383]
+CellTagsIndexPosition[     16806,        380]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"MeanGivenSD", "[", 
+   RowBox[{
+    RowBox[{"\[Sigma]_", "?", "NumericQ"}], ",", " ", "\[Mu]_", ",", " ", 
+    "Fint_", ",", "  ", 
+    RowBox[{"Ns_:", "100"}]}], "]"}], " ", ":=", " ", 
+  RowBox[{"(", "\[IndentingNewLine]", 
+   RowBox[{"Mean", "[", 
+    RowBox[{"Fint", "[", 
+     RowBox[{"RandomVariate", "[", 
+      RowBox[{
+       RowBox[{"NormalDistribution", "[", 
+        RowBox[{"\[Mu]", ",", " ", "\[Sigma]"}], "]"}], ",", " ", "Ns"}], 
+      "]"}], "]"}], "]"}], "\[IndentingNewLine]", ")"}]}]], "Input",
+ CellChangeTimes->{
+  3.7680744589885015`*^9, {3.7680745511384387`*^9, 
+   3.768074608893861*^9}},ExpressionUUID->"d8dc87ab-ec25-4420-b793-\
+f2b30b7c8027"],
+
+Cell[CellGroupData[{
+
+Cell["Fidelity Plot", "Subsection",
+ CellChangeTimes->{{3.7680743063449616`*^9, 
+  3.7680743109393196`*^9}},ExpressionUUID->"4b6da712-982d-4fb4-881a-\
+bb9096275be2"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"fidelityComparisonPlot", "[", 
+   RowBox[{"fids_", ",", " ", "names_", ",", " ", 
+    RowBox[{"Ns_:", "100"}]}], "]"}], " ", ":=", " ", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+     "fsA", ",", " ", "fsB", ",", " ", "fsC", ",", " ", "fidFunA", ",", " ", 
+      "fidFunB", ",", " ", "fidFunC", ",", " ", "colors", ",", " ", "fig"}], 
+     "}"}], ",", " ", 
+    RowBox[{"(", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Length", "[", "fids", "]"}], " ", "\[Equal]", " ", "2"}], 
+        ",", 
+        RowBox[{"(", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"fsA", ",", " ", "fsB"}], "}"}], " ", "=", " ", "fids"}], 
+          ";", "\[IndentingNewLine]", 
+          RowBox[{"fidFunA", " ", "=", " ", 
+           RowBox[{"Interpolation", "[", 
+            RowBox[{"fsA", ",", " ", 
+             RowBox[{"Method", "\[Rule]", "\"\<Spline\>\""}]}], "]"}]}], ";", 
+          "   ", 
+          RowBox[{"(*", " ", 
+           RowBox[{"F", "[", "\[Delta]E", "]"}], " ", "*)"}], 
+          "\[IndentingNewLine]", 
+          RowBox[{"fidFunB", " ", "=", " ", 
+           RowBox[{"Interpolation", "[", 
+            RowBox[{"fsB", ",", " ", 
+             RowBox[{"Method", "\[Rule]", "\"\<Spline\>\""}]}], "]"}]}], ";", 
+          "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          RowBox[{"fig", " ", "=", " ", 
+           RowBox[{"Figure", "[", "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{"FigurePanel", "[", 
+              RowBox[{
+               RowBox[{"{", "\[IndentingNewLine]", 
+                RowBox[{
+                 RowBox[{"FigGraphics", "[", "\[IndentingNewLine]", 
+                  RowBox[{"Plot", "[", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"1", " ", "-", " ", 
+                    RowBox[{"MeanGivenSD", "[", 
+                    RowBox[{
+                    "\[Sigma]", ",", " ", "0", ",", " ", "fidFunA", ",", " ", 
+                    "Ns"}], "]"}]}], " ", "//", " ", "Log10"}], ",", " ", 
+                    RowBox[{"{", 
+                    RowBox[{"\[Sigma]", ",", " ", "0", ",", " ", "300"}], 
+                    "}"}], ",", " ", 
+                    RowBox[{"PlotRange", "\[Rule]", "All"}], ",", " ", 
+                    RowBox[{"PlotStyle", "\[Rule]", "Orange"}]}], "]"}], 
+                  "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+                 RowBox[{"FigGraphics", "[", "\[IndentingNewLine]", 
+                  RowBox[{"Plot", "[", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"1", " ", "-", " ", 
+                    RowBox[{"MeanGivenSD", "[", 
+                    RowBox[{
+                    "\[Sigma]", ",", " ", "0", ",", " ", "fidFunB", ",", " ", 
+                    "Ns"}], "]"}]}], " ", "//", " ", "Log10"}], ",", " ", 
+                    RowBox[{"{", 
+                    RowBox[{"\[Sigma]", ",", " ", "0", ",", " ", "300"}], 
+                    "}"}], ",", " ", 
+                    RowBox[{"PlotRange", "\[Rule]", "All"}], ",", " ", 
+                    RowBox[{"PlotStyle", "\[Rule]", "Maroon"}]}], "]"}], 
+                  "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+                 RowBox[{"FigLabel", "[", 
+                  RowBox[{
+                   RowBox[{"LineLegend", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"Orange", ",", " ", "Maroon"}], "}"}], ",", 
+                    "names"}], "]"}], ",", 
+                   RowBox[{"Point", "\[Rule]", 
+                    RowBox[{"Scaled", "[", 
+                    RowBox[{"{", 
+                    RowBox[{".55", ",", " ", ".3"}], "}"}], "]"}]}], ",", 
+                   RowBox[{"TextOffset", "\[Rule]", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "1"}], ",", "1"}], "}"}]}]}], "]"}]}], 
+                "\[IndentingNewLine]", "}"}], ",", "\[IndentingNewLine]", 
+               RowBox[{"XPlotRange", "\[Rule]", 
+                RowBox[{"{", 
+                 RowBox[{"0", ",", " ", "300"}], "}"}]}], ",", " ", 
+               RowBox[{
+               "XFrameLabel", "\[Rule]", 
+                "\"\<\!\(\*SubscriptBox[StyleBox[\"\[Sigma]\",FontSlant->\"\
+Italic\"], \"\[Delta]E\"]\) (V/m)\>\""}], ",", "\[IndentingNewLine]", 
+               RowBox[{"YPlotRange", "\[Rule]", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{
+                   SuperscriptBox["10", 
+                    RowBox[{"-", "5"}]], " ", "//", " ", "Log10"}], ",", " ", 
+                  RowBox[{
+                   RowBox[{"1", "*", 
+                    SuperscriptBox["10", "0"]}], " ", "//", " ", "Log10"}]}], 
+                 "}"}]}], ",", " ", 
+               RowBox[{"YFrameLabel", "\[Rule]", "\"\<1 - F\>\""}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{"YTicks", "\[Rule]", 
+                RowBox[{"LogTicks", "[", 
+                 RowBox[{"10", ",", " ", 
+                  RowBox[{"-", "10"}], ",", " ", "10"}], "]"}]}]}], 
+              "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+             RowBox[{"CanvasSize", "\[Rule]", 
+              RowBox[{"{", 
+               RowBox[{"5", ",", " ", "3"}], "}"}]}]}], "\[IndentingNewLine]",
+             "]"}]}]}], "\[IndentingNewLine]", ")"}]}], "]"}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Length", "[", "fids", "]"}], " ", "\[Equal]", " ", "3"}], 
+        ",", 
+        RowBox[{"(", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"fsA", ",", " ", "fsB", ",", " ", "fsC"}], "}"}], " ", 
+           "=", " ", "fids"}], ";", "\[IndentingNewLine]", 
+          RowBox[{"fidFunA", " ", "=", " ", 
+           RowBox[{"Interpolation", "[", 
+            RowBox[{"fsA", ",", " ", 
+             RowBox[{"Method", "\[Rule]", "\"\<Spline\>\""}]}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"fidFunB", " ", "=", " ", 
+           RowBox[{"Interpolation", "[", 
+            RowBox[{"fsB", ",", " ", 
+             RowBox[{"Method", "\[Rule]", "\"\<Spline\>\""}]}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"fidFunC", " ", "=", " ", 
+           RowBox[{"Interpolation", "[", 
+            RowBox[{"fsC", ",", " ", 
+             RowBox[{"Method", "\[Rule]", "\"\<Spline\>\""}]}], "]"}]}], ";", 
+          "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          RowBox[{"fig", " ", "=", " ", 
+           RowBox[{"Figure", "[", "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{"FigurePanel", "[", 
+              RowBox[{
+               RowBox[{"{", "\[IndentingNewLine]", 
+                RowBox[{
+                 RowBox[{"FigGraphics", "[", "\[IndentingNewLine]", 
+                  RowBox[{"Plot", "[", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"1", " ", "-", " ", 
+                    RowBox[{"MeanGivenSD", "[", 
+                    RowBox[{
+                    "\[Sigma]", ",", " ", "0", ",", " ", "fidFunA", ",", " ", 
+                    "Ns"}], "]"}]}], " ", "//", " ", "Log10"}], ",", " ", 
+                    RowBox[{"{", 
+                    RowBox[{"\[Sigma]", ",", " ", "0", ",", " ", "300"}], 
+                    "}"}], ",", " ", 
+                    RowBox[{"PlotRange", "\[Rule]", "All"}], ",", " ", 
+                    RowBox[{"PlotStyle", "\[Rule]", "Navy"}]}], "]"}], 
+                  "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+                 RowBox[{"FigGraphics", "[", "\[IndentingNewLine]", 
+                  RowBox[{"Plot", "[", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"1", " ", "-", " ", 
+                    RowBox[{"MeanGivenSD", "[", 
+                    RowBox[{
+                    "\[Sigma]", ",", " ", "0", ",", " ", "fidFunB", ",", " ", 
+                    "Ns"}], "]"}]}], " ", "//", " ", "Log10"}], ",", " ", 
+                    RowBox[{"{", 
+                    RowBox[{"\[Sigma]", ",", " ", "0", ",", " ", "300"}], 
+                    "}"}], ",", " ", 
+                    RowBox[{"PlotRange", "\[Rule]", "All"}], ",", " ", 
+                    RowBox[{"PlotStyle", "\[Rule]", "Orange"}]}], "]"}], 
+                  "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+                 RowBox[{"FigGraphics", "[", "\[IndentingNewLine]", 
+                  RowBox[{"Plot", "[", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"1", " ", "-", " ", 
+                    RowBox[{"MeanGivenSD", "[", 
+                    RowBox[{
+                    "\[Sigma]", ",", " ", "0", ",", " ", "fidFunC", ",", " ", 
+                    "Ns"}], "]"}]}], " ", "//", " ", "Log10"}], ",", " ", 
+                    RowBox[{"{", 
+                    RowBox[{"\[Sigma]", ",", " ", "0", ",", " ", "300"}], 
+                    "}"}], ",", " ", 
+                    RowBox[{"PlotRange", "\[Rule]", "All"}], ",", " ", 
+                    RowBox[{"PlotStyle", "\[Rule]", "Maroon"}]}], "]"}], 
+                  "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+                 RowBox[{"FigLabel", "[", 
+                  RowBox[{
+                   RowBox[{"LineLegend", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"Navy", ",", " ", "Orange", ",", " ", "Maroon"}], 
+                    "}"}], ",", "names"}], "]"}], ",", 
+                   RowBox[{"Point", "\[Rule]", 
+                    RowBox[{"Scaled", "[", 
+                    RowBox[{"{", 
+                    RowBox[{".55", ",", " ", ".4"}], "}"}], "]"}]}], ",", 
+                   RowBox[{"TextOffset", "\[Rule]", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "1"}], ",", "1"}], "}"}]}]}], "]"}]}], 
+                "\[IndentingNewLine]", "}"}], ",", "\[IndentingNewLine]", 
+               RowBox[{"XPlotRange", "\[Rule]", 
+                RowBox[{"{", 
+                 RowBox[{"0", ",", " ", "300"}], "}"}]}], ",", " ", 
+               RowBox[{
+               "XFrameLabel", "\[Rule]", 
+                "\"\<\!\(\*SubscriptBox[StyleBox[\"\[Sigma]\",FontSlant->\"\
+Italic\"], \"\[Delta]E\"]\) (V/m)\>\""}], ",", "\[IndentingNewLine]", 
+               RowBox[{"YPlotRange", "\[Rule]", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{
+                   SuperscriptBox["10", 
+                    RowBox[{"-", "5"}]], " ", "//", " ", "Log10"}], ",", " ", 
+                  RowBox[{
+                   RowBox[{"1", "*", 
+                    SuperscriptBox["10", "0"]}], " ", "//", " ", "Log10"}]}], 
+                 "}"}]}], ",", " ", 
+               RowBox[{"YFrameLabel", "\[Rule]", "\"\<1 - F\>\""}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{"YTicks", "\[Rule]", 
+                RowBox[{"LogTicks", "[", 
+                 RowBox[{"10", ",", " ", 
+                  RowBox[{"-", "10"}], ",", " ", "10"}], "]"}]}]}], 
+              "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+             RowBox[{"CanvasSize", "\[Rule]", 
+              RowBox[{"{", 
+               RowBox[{"5", ",", " ", "3"}], "}"}]}]}], "\[IndentingNewLine]",
+             "]"}]}]}], "\[IndentingNewLine]", ")"}]}], "]"}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", "fig"}], 
+     "\[IndentingNewLine]", ")"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.7680743161515293`*^9, 3.768074518555403*^9}, {
+   3.768074593738515*^9, 3.768074631071398*^9}, 3.768075155589978*^9, {
+   3.768075227159413*^9, 3.7680752377899303`*^9}, {3.768075362739873*^9, 
+   3.768075374230691*^9}, {3.768557521017075*^9, 3.7685575219655294`*^9}, {
+   3.7685575556660995`*^9, 3.768557686902443*^9}, {3.7685577256700907`*^9, 
+   3.7685578013984327`*^9}, 3.768557867515316*^9, {3.7685579023782167`*^9, 
+   3.7685580025884466`*^9}, {3.7685580671802053`*^9, 3.768558159696869*^9}, {
+   3.768558262283726*^9, 3.7685583209619026`*^9}, {3.7685583595266657`*^9, 
+   3.7685584106881723`*^9}, {3.7685584426317563`*^9, 3.768558490703044*^9}, {
+   3.768752833804105*^9, 3.7687528413217278`*^9}, 3.768752890702316*^9, {
+   3.7875732683277063`*^9, 
+   3.7875732817390738`*^9}},ExpressionUUID->"fdde4bf8-ddd8-491c-9b35-\
+84fd7ab71574"],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{
+   RowBox[{"colors", " ", "=", " ", 
+    RowBox[{"{", 
+     RowBox[{"Blue", ",", " ", "Orange", ",", " ", "Maroon"}], "}"}]}], ";", 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"components", " ", "=", " ", 
+    RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+   RowBox[{"Do", "[", 
+    RowBox[{
+     RowBox[{"(", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"fidFun", " ", "=", " ", 
+        RowBox[{"Interpolation", "[", 
+         RowBox[{
+          RowBox[{"fids", "[", 
+           RowBox[{"[", "i", "]"}], "]"}], ",", " ", 
+          RowBox[{"Method", "\[Rule]", "\"\<Spline\>\""}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"comp", " ", "=", " ", 
+        RowBox[{"FigGraphics", "[", "\[IndentingNewLine]", 
+         RowBox[{"Plot", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"1", " ", "-", " ", 
+             RowBox[{"MeanGivenSD", "[", 
+              RowBox[{
+              "\[Sigma]", ",", " ", "0", ",", " ", "fidFun", ",", " ", "Ns"}],
+               "]"}]}], " ", "//", " ", "Log10"}], ",", " ", 
+           RowBox[{"{", 
+            RowBox[{"\[Sigma]", ",", " ", "0", ",", " ", "300"}], "}"}], ",", 
+           " ", 
+           RowBox[{"PlotRange", "\[Rule]", "All"}], ",", " ", 
+           RowBox[{"PlotStyle", "\[Rule]", 
+            RowBox[{"colors", "[", 
+             RowBox[{"[", "i", "]"}], "]"}]}]}], "]"}], "\[IndentingNewLine]",
+          "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"AppendTo", "[", 
+        RowBox[{"components", ",", " ", "comp"}], "]"}], ";"}], 
+      "\[IndentingNewLine]", ")"}], "\[IndentingNewLine]", ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", " ", 
+       RowBox[{"Length", "[", "fids", "]"}]}], "}"}]}], "]"}], ";", 
+   "\[IndentingNewLine]", 
+   RowBox[{"AppendTo", "[", 
+    RowBox[{"components", ",", " ", "\[IndentingNewLine]", 
+     RowBox[{"FigLabel", "[", 
+      RowBox[{
+       RowBox[{"LineLegend", "[", 
+        RowBox[{"colors", ",", "names"}], "]"}], ",", 
+       RowBox[{"Point", "\[Rule]", 
+        RowBox[{"Scaled", "[", 
+         RowBox[{"{", 
+          RowBox[{".55", ",", " ", ".3"}], "}"}], "]"}]}], ",", 
+       RowBox[{"TextOffset", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"-", "1"}], ",", "1"}], "}"}]}]}], "]"}]}], 
+    "\[IndentingNewLine]", "]"}], ";"}], "*)"}]], "Input",ExpressionUUID->\
+"acfb22c6-44cf-49d4-baf6-2662815b08ef"]
+}, Open  ]]
+},
+WindowSize->{1366, 685},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 705, 18, 73, "Input",ExpressionUUID->"d8dc87ab-ec25-4420-b793-f2b30b7c8027"],
+Cell[CellGroupData[{
+Cell[1288, 42, 165, 3, 54, "Subsection",ExpressionUUID->"4b6da712-982d-4fb4-881a-bb9096275be2"],
+Cell[1456, 47, 12577, 256, 1155, "Input",ExpressionUUID->"fdde4bf8-ddd8-491c-9b35-84fd7ab71574"],
+Cell[14036, 305, 2459, 60, 304, "Input",ExpressionUUID->"acfb22c6-44cf-49d4-baf6-2662815b08ef"]
+}, Open  ]]
+}
+]
+*)
+
